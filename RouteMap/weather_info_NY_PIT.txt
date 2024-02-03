@@ -1,0 +1,6 @@
+The weather at New York County will have {'precipitationIntensity': 0, 'precipitationProbability': 0, 'precipitationType': 0, 'temperature': 44.6, 'windDirection': 359, 'windSpeed': 3.36} on your route
+The weather at Hunterdon County will have {'precipitationIntensity': 0, 'precipitationProbability': 0, 'precipitationType': 0, 'temperature': 39.85, 'windDirection': 337.47, 'windSpeed': 7.24} on your route
+The weather at Berks County will have {'precipitationIntensity': 0, 'precipitationProbability': 0, 'precipitationType': 0, 'temperature': 38.92, 'windDirection': 348.47, 'windSpeed': 5.92} on your route
+The weather at Cumberland County will have {'precipitationIntensity': 0, 'precipitationProbability': 0, 'precipitationType': 0, 'temperature': 38.64, 'windDirection': 10.73, 'windSpeed': 5.75} on your route
+The weather at Bedford County will have {'precipitationIntensity': 0, 'precipitationProbability': 0, 'precipitationType': 0, 'temperature': 35.99, 'windDirection': 338.98, 'windSpeed': 5.27} on your route
+The weather at Westmoreland County will have {'precipitationIntensity': 0, 'precipitationProbability': 0, 'precipitationType': 0, 'temperature': 31.81, 'windDirection': 50.13, 'windSpeed': 4.6} on your route

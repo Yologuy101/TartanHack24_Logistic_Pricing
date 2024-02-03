@@ -1,0 +1,492 @@
+{
+    "El Paso County": {
+        "data": {
+            "timelines": [
+                {
+                    "timestep": "1h",
+                    "endTime": "2024-02-03T21:00:00Z",
+                    "startTime": "2024-02-03T20:00:00Z",
+                    "intervals": [
+                        {
+                            "startTime": "2024-02-03T20:00:00Z",
+                            "values": {
+                                "precipitationIntensity": 0.09,
+                                "precipitationProbability": 75,
+                                "precipitationType": 2,
+                                "temperature": 35.94,
+                                "windDirection": 263.63,
+                                "windSpeed": 14.26
+                            }
+                        },
+                        {
+                            "startTime": "2024-02-03T21:00:00Z",
+                            "values": {
+                                "precipitationIntensity": 0.1,
+                                "precipitationProbability": 95,
+                                "precipitationType": 2,
+                                "temperature": 34.11,
+                                "windDirection": 2.51,
+                                "windSpeed": 13.54
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "Jefferson County": {
+        "data": {
+            "timelines": [
+                {
+                    "timestep": "1h",
+                    "endTime": "2024-02-03T22:00:00Z",
+                    "startTime": "2024-02-03T21:00:00Z",
+                    "intervals": [
+                        {
+                            "startTime": "2024-02-03T21:00:00Z",
+                            "values": {
+                                "precipitationIntensity": 0.1,
+                                "precipitationProbability": 96,
+                                "precipitationType": 2,
+                                "temperature": 32.63,
+                                "windDirection": 341.67,
+                                "windSpeed": 9.3
+                            }
+                        },
+                        {
+                            "startTime": "2024-02-03T22:00:00Z",
+                            "values": {
+                                "precipitationIntensity": 0.11,
+                                "precipitationProbability": 84,
+                                "precipitationType": 2,
+                                "temperature": 32.39,
+                                "windDirection": 351.68,
+                                "windSpeed": 9.39
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "Summit County": {
+        "data": {
+            "timelines": [
+                {
+                    "timestep": "1h",
+                    "endTime": "2024-02-03T23:00:00Z",
+                    "startTime": "2024-02-03T22:00:00Z",
+                    "intervals": [
+                        {
+                            "startTime": "2024-02-03T22:00:00Z",
+                            "values": {
+                                "precipitationIntensity": 0.03,
+                                "precipitationProbability": 85,
+                                "precipitationType": 2,
+                                "temperature": 18.22,
+                                "windDirection": 319.69,
+                                "windSpeed": 16.51
+                            }
+                        },
+                        {
+                            "startTime": "2024-02-03T23:00:00Z",
+                            "values": {
+                                "precipitationIntensity": 0.04,
+                                "precipitationProbability": 59,
+                                "precipitationType": 2,
+                                "temperature": 17.59,
+                                "windDirection": 320.64,
+                                "windSpeed": 16.3
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "Eagle County": {
+        "data": {
+            "timelines": [
+                {
+                    "timestep": "1h",
+                    "endTime": "2024-02-04T00:00:00Z",
+                    "startTime": "2024-02-03T23:00:00Z",
+                    "intervals": [
+                        {
+                            "startTime": "2024-02-03T23:00:00Z",
+                            "values": {
+                                "precipitationIntensity": 0.03,
+                                "precipitationProbability": 53,
+                                "precipitationType": 2,
+                                "temperature": 29.19,
+                                "windDirection": 297.16,
+                                "windSpeed": 10.53
+                            }
+                        },
+                        {
+                            "startTime": "2024-02-04T00:00:00Z",
+                            "values": {
+                                "precipitationIntensity": 0,
+                                "precipitationProbability": 0,
+                                "precipitationType": 2,
+                                "temperature": 27.16,
+                                "windDirection": 294.2,
+                                "windSpeed": 9.99
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "Garfield County": {
+        "data": {
+            "timelines": [
+                {
+                    "timestep": "1h",
+                    "endTime": "2024-02-04T02:00:00Z",
+                    "startTime": "2024-02-04T01:00:00Z",
+                    "intervals": [
+                        {
+                            "startTime": "2024-02-04T01:00:00Z",
+                            "values": {
+                                "precipitationIntensity": 0,
+                                "precipitationProbability": 0,
+                                "precipitationType": 2,
+                                "temperature": 36.91,
+                                "windDirection": 222.74,
+                                "windSpeed": 10.21
+                            }
+                        },
+                        {
+                            "startTime": "2024-02-04T02:00:00Z",
+                            "values": {
+                                "precipitationIntensity": 0,
+                                "precipitationProbability": 0,
+                                "precipitationType": 2,
+                                "temperature": 36.51,
+                                "windDirection": 232.11,
+                                "windSpeed": 10.68
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "Mesa County": {
+        "data": {
+            "timelines": [
+                {
+                    "timestep": "1h",
+                    "endTime": "2024-02-04T03:00:00Z",
+                    "startTime": "2024-02-04T02:00:00Z",
+                    "intervals": [
+                        {
+                            "startTime": "2024-02-04T02:00:00Z",
+                            "values": {
+                                "precipitationIntensity": 0,
+                                "precipitationProbability": 0,
+                                "precipitationType": 0,
+                                "temperature": 41.7,
+                                "windDirection": 247.99,
+                                "windSpeed": 13.46
+                            }
+                        },
+                        {
+                            "startTime": "2024-02-04T03:00:00Z",
+                            "values": {
+                                "precipitationIntensity": 0,
+                                "precipitationProbability": 0,
+                                "precipitationType": 1,
+                                "temperature": 40.25,
+                                "windDirection": 245.94,
+                                "windSpeed": 13.2
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "Grand County": {
+        "data": {
+            "timelines": [
+                {
+                    "timestep": "1h",
+                    "endTime": "2024-02-04T04:00:00Z",
+                    "startTime": "2024-02-04T03:00:00Z",
+                    "intervals": [
+                        {
+                            "startTime": "2024-02-04T03:00:00Z",
+                            "values": {
+                                "precipitationIntensity": 0,
+                                "precipitationProbability": 0,
+                                "precipitationType": 0,
+                                "temperature": 36.44,
+                                "windDirection": 290.48,
+                                "windSpeed": 8.74
+                            }
+                        },
+                        {
+                            "startTime": "2024-02-04T04:00:00Z",
+                            "values": {
+                                "precipitationIntensity": 0,
+                                "precipitationProbability": 0,
+                                "precipitationType": 0,
+                                "temperature": 34.5,
+                                "windDirection": 282.77,
+                                "windSpeed": 8.9
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "Emery County": {
+        "data": {
+            "timelines": [
+                {
+                    "timestep": "1h",
+                    "endTime": "2024-02-04T05:00:00Z",
+                    "startTime": "2024-02-04T04:00:00Z",
+                    "intervals": [
+                        {
+                            "startTime": "2024-02-04T04:00:00Z",
+                            "values": {
+                                "precipitationIntensity": 0,
+                                "precipitationProbability": 0,
+                                "precipitationType": 0,
+                                "temperature": 25.68,
+                                "windDirection": 277.86,
+                                "windSpeed": 12.57
+                            }
+                        },
+                        {
+                            "startTime": "2024-02-04T05:00:00Z",
+                            "values": {
+                                "precipitationIntensity": 0,
+                                "precipitationProbability": 0,
+                                "precipitationType": 0,
+                                "temperature": 24.16,
+                                "windDirection": 269.1,
+                                "windSpeed": 10.4
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "Sevier County": {
+        "data": {
+            "timelines": [
+                {
+                    "timestep": "1h",
+                    "endTime": "2024-02-04T07:00:00Z",
+                    "startTime": "2024-02-04T06:00:00Z",
+                    "intervals": [
+                        {
+                            "startTime": "2024-02-04T06:00:00Z",
+                            "values": {
+                                "precipitationIntensity": 0,
+                                "precipitationProbability": 0,
+                                "precipitationType": 0,
+                                "temperature": 19.91,
+                                "windDirection": 274.04,
+                                "windSpeed": 7.91
+                            }
+                        },
+                        {
+                            "startTime": "2024-02-04T07:00:00Z",
+                            "values": {
+                                "precipitationIntensity": 0,
+                                "precipitationProbability": 0,
+                                "precipitationType": 0,
+                                "temperature": 19.33,
+                                "windDirection": 273.95,
+                                "windSpeed": 7.96
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "Iron County": {
+        "data": {
+            "timelines": [
+                {
+                    "timestep": "1h",
+                    "endTime": "2024-02-04T08:00:00Z",
+                    "startTime": "2024-02-04T07:00:00Z",
+                    "intervals": [
+                        {
+                            "startTime": "2024-02-04T07:00:00Z",
+                            "values": {
+                                "precipitationIntensity": 0,
+                                "precipitationProbability": 0,
+                                "precipitationType": 0,
+                                "temperature": 30.69,
+                                "windDirection": 233.45,
+                                "windSpeed": 7.87
+                            }
+                        },
+                        {
+                            "startTime": "2024-02-04T08:00:00Z",
+                            "values": {
+                                "precipitationIntensity": 0,
+                                "precipitationProbability": 0,
+                                "precipitationType": 0,
+                                "temperature": 30.51,
+                                "windDirection": 220.54,
+                                "windSpeed": 6.8
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "Washington County": {
+        "data": {
+            "timelines": [
+                {
+                    "timestep": "1h",
+                    "endTime": "2024-02-04T09:00:00Z",
+                    "startTime": "2024-02-04T08:00:00Z",
+                    "intervals": [
+                        {
+                            "startTime": "2024-02-04T08:00:00Z",
+                            "values": {
+                                "precipitationIntensity": 0,
+                                "precipitationProbability": 0,
+                                "precipitationType": 0,
+                                "temperature": 38.62,
+                                "windDirection": 71.07,
+                                "windSpeed": 5.5
+                            }
+                        },
+                        {
+                            "startTime": "2024-02-04T09:00:00Z",
+                            "values": {
+                                "precipitationIntensity": 0,
+                                "precipitationProbability": 0,
+                                "precipitationType": 0,
+                                "temperature": 38.19,
+                                "windDirection": 166.01,
+                                "windSpeed": 5.46
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "Clark County": {
+        "data": {
+            "timelines": [
+                {
+                    "timestep": "1h",
+                    "endTime": "2024-02-04T11:00:00Z",
+                    "startTime": "2024-02-04T10:00:00Z",
+                    "intervals": [
+                        {
+                            "startTime": "2024-02-04T10:00:00Z",
+                            "values": {
+                                "precipitationIntensity": 0,
+                                "precipitationProbability": 0,
+                                "precipitationType": 0,
+                                "temperature": 44.11,
+                                "windDirection": 212.86,
+                                "windSpeed": 9.5
+                            }
+                        },
+                        {
+                            "startTime": "2024-02-04T11:00:00Z",
+                            "values": {
+                                "precipitationIntensity": 0,
+                                "precipitationProbability": 0,
+                                "precipitationType": 1,
+                                "temperature": 44.6,
+                                "windDirection": 221.43,
+                                "windSpeed": 9.43
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "San Bernardino County": {
+        "data": {
+            "timelines": [
+                {
+                    "timestep": "1h",
+                    "endTime": "2024-02-04T13:00:00Z",
+                    "startTime": "2024-02-04T12:00:00Z",
+                    "intervals": [
+                        {
+                            "startTime": "2024-02-04T12:00:00Z",
+                            "values": {
+                                "precipitationIntensity": 0,
+                                "precipitationProbability": 0,
+                                "precipitationType": 1,
+                                "temperature": 41.67,
+                                "windDirection": 200.75,
+                                "windSpeed": 9.05
+                            }
+                        },
+                        {
+                            "startTime": "2024-02-04T13:00:00Z",
+                            "values": {
+                                "precipitationIntensity": 0,
+                                "precipitationProbability": 0,
+                                "precipitationType": 1,
+                                "temperature": 40.76,
+                                "windDirection": 196.26,
+                                "windSpeed": 8.88
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "Los Angeles County": {
+        "data": {
+            "timelines": [
+                {
+                    "timestep": "1h",
+                    "endTime": "2024-02-04T14:00:00Z",
+                    "startTime": "2024-02-04T13:00:00Z",
+                    "intervals": [
+                        {
+                            "startTime": "2024-02-04T13:00:00Z",
+                            "values": {
+                                "precipitationIntensity": 0,
+                                "precipitationProbability": 0,
+                                "precipitationType": 1,
+                                "temperature": 49.39,
+                                "windDirection": 117.53,
+                                "windSpeed": 9.33
+                            }
+                        },
+                        {
+                            "startTime": "2024-02-04T14:00:00Z",
+                            "values": {
+                                "precipitationIntensity": 0,
+                                "precipitationProbability": 0,
+                                "precipitationType": 1,
+                                "temperature": 49.42,
+                                "windDirection": 115.66,
+                                "windSpeed": 9.62
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
