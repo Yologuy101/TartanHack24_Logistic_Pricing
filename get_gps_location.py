@@ -19,9 +19,10 @@ class RouteInfo():
         self.gmaps = googlemaps.Client(key=self.key)
         self.directions = self.gmaps.directions(self.origin, self.destination, mode="driving", departure_time=self.start_time, traffic_model=self.traffic)
 
-        self.gps, self.time_traffic, self.distance = self.get_info()
+        self.gps, self.time_traffic, self.d1 = self.get_info()
+        self.distance = self.d1['text'][:self.distance['text'].find(' ')].replace(',', '')
         # point along the path heuristic
-        ratio = len(self.gps) / int(self.distance['text'][:self.distance['text'].find(' ')].replace(',', ''))
+        ratio = len(self.gps) / int(self.d1['text'][:self.d1['text'].find(' ')].replace(',', ''))
        
         k = 0.2/ratio
         step = int(1/k)
@@ -62,11 +63,11 @@ class RouteInfo():
     def get_address(self):
 
         result = set()
-        c = self.reduce_gps[::25]
+        c = self.reduce_gps[::2]
         for coord in c:
             lat = coord[0]
             lon = coord[1]
-            print(lat, lon)
+            # print(lat, lon)
 
             url = f"https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lon}&key={self.key}"
             response = requests.get(url)
@@ -77,4 +78,25 @@ class RouteInfo():
             # return "Address not found"
 
         return result
+    
+    def get_live_route_weather(self):
+        url = "https://api.tomorrow.io/v4/timelines?apikey=Lu2ByVGmsKqlhWaoRt5N22UR07LbOjE4"
+
+        weather_loc = self.reduce_gps[::25]
+        weather_loc.append(self.reduce_gps[-1])
+        dt = 1
+        for lat, lon in weather_loc:
+            payload = {
+                "location": f"{lat}, {lon}",
+                "fields": ["precipitationProbability", "precipitationType", "temperature", "windSpeed", "windDirection", "precipitationIntensity"],
+                "units": "imperial",
+                "timesteps": ["1h"],
+                "startTime": f"nowPlus{dt}h",
+                "endTime": f"nowPlus{dt+1}h"
+            }
+            headers = {
+                "accept": "application/json",
+                "Accept-Encoding": "gzip",
+                "content-type": "application/json"
+            }
     
