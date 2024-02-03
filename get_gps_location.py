@@ -2,7 +2,14 @@ from datetime import datetime
 import googlemaps, polyline
 
 
+
 class RouteInfo():
+
+    """
+    route = get_gps_location.RouteInfo(s, e)
+    then route.gps
+    """
+
     def __init__(self, origin, destination, start_time=datetime.now(), traffic='pessimistic'):
         self.origin = origin
         self.destination = destination
