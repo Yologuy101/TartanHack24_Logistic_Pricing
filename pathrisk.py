@@ -18,6 +18,7 @@ class PathRisk(RouteInfo):
         self.path = route.reduce_gps
         self.states = route.get_address()
         self.distance = int(route.distance)
+        self.number_of_accidents_total = self.features.shape[0]
 
     def time_difference_in_minutes(self):
     
