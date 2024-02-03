@@ -1,5 +1,6 @@
 from datetime import datetime
 import googlemaps, polyline, requests
+import time
 
 
 
@@ -20,7 +21,9 @@ class RouteInfo():
         self.directions = self.gmaps.directions(self.origin, self.destination, mode="driving", departure_time=self.start_time, traffic_model=self.traffic)
 
         self.gps, self.time_traffic, self.d1 = self.get_info()
-        self.distance = self.d1['text'][:self.distance['text'].find(' ')].replace(',', '')
+        self.time_traffic_m = float(self.time_traffic[self.time_traffic.find('s ')+2:self.time_traffic.find('s ')+4])
+        self.time_traffic_h = float(self.time_traffic[:self.time_traffic.find(' ')])
+        self.distance = int(self.d1['text'][:self.d1['text'].find(' ')].replace(',', ''))
         # point along the path heuristic
         ratio = len(self.gps) / int(self.d1['text'][:self.d1['text'].find(' ')].replace(',', ''))
        
@@ -63,40 +66,112 @@ class RouteInfo():
     def get_address(self):
 
         result = set()
-        c = self.reduce_gps[::2]
+        # s = []
+        c = self.reduce_gps[::20] 
         for coord in c:
             lat = coord[0]
             lon = coord[1]
             # print(lat, lon)
 
-            url = f"https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lon}&key={self.key}"
+            url = f"https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lon}&result_type=administrative_area_level_1&key={self.key}"
+
             response = requests.get(url)
             data = response.json()
             
             # if 'results' in data and data['results']:
-            result.add(data['plus_code']['compound_code'][-7:][:2])
+            result.add(data['results'][0]['address_components'][0]['short_name'])
+            # s.append(data)
+
+        
             # return "Address not found"
 
         return result
     
     def get_live_route_weather(self):
-        url = "https://api.tomorrow.io/v4/timelines?apikey=Lu2ByVGmsKqlhWaoRt5N22UR07LbOjE4"
 
-        weather_loc = self.reduce_gps[::25]
-        weather_loc.append(self.reduce_gps[-1])
-        dt = 1
+        step_count = int(float(len(self.gps))/(self.time_traffic_h))
+    
+        path_weather = []
+
+        weather_loc = self.gps[::step_count]
+        # weather_loc.append(self.reduce_gps[-1])
+        st = self.start_time
+        st = self.datetime_from_local_to_utc(st)
         for lat, lon in weather_loc:
+            # print(lat, lon)
+            
+            year = st.year
+            month = st.month
+            day = st.day
+            hour = st.hour
+            minute = st.minute
+            st = datetime(year, month, day, hour, 0)
+            
+            if hour + 1 > 23:
+                hour = (hour + 1) % 24
+                day += 1
+            else:
+                hour = (hour + 1) % 24
+            
+            et = datetime(year, month, day, hour, 0)
+           
+            # print(st, et)
+            
             payload = {
                 "location": f"{lat}, {lon}",
                 "fields": ["precipitationProbability", "precipitationType", "temperature", "windSpeed", "windDirection", "precipitationIntensity"],
                 "units": "imperial",
                 "timesteps": ["1h"],
-                "startTime": f"nowPlus{dt}h",
-                "endTime": f"nowPlus{dt+1}h"
+                "startTime": f"{datetime.isoformat(st)}",
+                "endTime": f"{datetime.isoformat(et)}"
             }
             headers = {
                 "accept": "application/json",
                 "Accept-Encoding": "gzip",
                 "content-type": "application/json"
             }
-    
+
+            # st = self.datetime_from_utc_to_local(et)
+        
+            st = et
+            
+            url = "https://api.tomorrow.io/v4/timelines?apikey=Lu2ByVGmsKqlhWaoRt5N22UR07LbOjE4"
+            response = requests.post(url, json=payload, headers=headers).json()
+
+            path_weather.append(response)
+        return path_weather, weather_loc
+
+
+    def datetime_from_utc_to_local(self, utc_datetime):
+        now_timestamp = time.time()
+        offset = datetime.fromtimestamp(now_timestamp) - datetime.utcfromtimestamp(now_timestamp)
+        return utc_datetime + offset
+
+    def datetime_from_local_to_utc(self, utc_datetime):
+        now_timestamp = time.time()
+        offset = datetime.utcfromtimestamp(now_timestamp) - datetime.fromtimestamp(now_timestamp) 
+        return utc_datetime + offset
+        
+
+    def get_city_weather(self):
+        result = {}
+        w, loc = self.get_live_route_weather()
+        # w=[1,2,3]
+        # loc = [(38.83408, -104.82075),
+        #         (38.86098, -104.91272),
+        #         (38.88996, -104.95847)]
+        for l, c in zip(w, loc):
+            lat = c[0]
+            lon = c[1]
+            # print(lat, lon)
+
+            url = f"https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lon}&result_type=administrative_area_level_2&key={self.key}"
+            response = requests.get(url)
+            data = response.json()
+            
+            # if 'results' in data and data['results']:
+            r = data['results'][0]['address_components'][0]['short_name']
+            result[r] = l
+            # return "Address not found"['plus_code']['']
+
+        return result
