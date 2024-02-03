@@ -19,6 +19,12 @@ class RouteInfo():
         self.directions = self.gmaps.directions(self.origin, self.destination, mode="driving", departure_time=self. start_time, traffic_model=self.traffic)
 
         self.gps, self.time_traffic, self.distance = self.get_info()
+        # point along the path heuristic
+        ratio = len(self.gps) / self.distance
+        k = 0.2/ratio
+        step = int(1/k)
+        self.reduce_gps = self.gps[::step]
+        
 
     def get_info(self):
 
