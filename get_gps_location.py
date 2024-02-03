@@ -21,11 +21,11 @@ class RouteInfo():
 
         self.gps, self.time_traffic, self.distance = self.get_info()
         # point along the path heuristic
-        ratio = len(self.gps) / int(self.distance['text'][:self.distance['text'].find(' ')])
+        ratio = len(self.gps) / int(self.distance['text'][:self.distance['text'].find(' ')].replace(',', ''))
+       
         k = 0.2/ratio
         step = int(1/k)
         self.reduce_gps = self.gps[::step]
-        self.route_state = self.get_address()
         
         
 
@@ -61,7 +61,6 @@ class RouteInfo():
     
     def get_address(self):
 
-        loc = []
         result = set()
         c = self.reduce_gps[::25]
         for coord in c:
