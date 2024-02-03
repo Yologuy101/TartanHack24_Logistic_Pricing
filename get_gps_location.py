@@ -1,6 +1,7 @@
 from datetime import datetime
 import googlemaps, polyline, requests
-import time
+import time, json
+
 
 
 
@@ -36,15 +37,15 @@ class RouteInfo():
             self.time_traffic_d = res[0]
             self.time_traffic_h = res[1]
             self.time_traffic_m = 0
-        elif len(res) == 2 and 'day' in self.time_traffic and 'minute' in self.time_traffic:
+        elif len(res) == 2 and 'day' in self.time_traffic and 'min' in self.time_traffic:
             self.time_traffic_d = res[0]
             self.time_traffic_h = 0
             self.time_traffic_m = [1]
-        elif len(res) == 2 and 'hour' in self.time_traffic and 'minute' in self.time_traffic:
+        elif len(res) == 2 and 'hour' in self.time_traffic and 'min' in self.time_traffic:
             self.time_traffic_d = 0
             self.time_traffic_h = res[0]
             self.time_traffic_m = res[1]
-        elif len(res) == 1 and 'minute' in self.time_traffic:
+        elif len(res) == 1 and 'min' in self.time_traffic:
             self.time_traffic_d = 0
             self.time_traffic_h = 0
             self.time_traffic_m = res[0]
@@ -210,5 +211,8 @@ class RouteInfo():
             r = data['results'][0]['address_components'][0]['short_name']
             result[r] = l
             # return "Address not found"['plus_code']['']
+
+            with open('data.json', 'w', encoding='utf-8') as f:
+                json.dump(result, f, ensure_ascii=False, indent=4)
 
         return result
