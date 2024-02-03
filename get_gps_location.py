@@ -21,8 +21,45 @@ class RouteInfo():
         self.directions = self.gmaps.directions(self.origin, self.destination, mode="driving", departure_time=self.start_time, traffic_model=self.traffic)
 
         self.gps, self.time_traffic, self.d1 = self.get_info()
-        self.time_traffic_m = float(self.time_traffic[self.time_traffic.find('s ')+2:self.time_traffic.find('s ')+4])
-        self.time_traffic_h = float(self.time_traffic[:self.time_traffic.find(' ')])
+
+        res = list(filter(lambda x: x.isdigit(), self.time_traffic.split()))
+ 
+        # use a list comprehension to convert the remaining elements to integers
+        res = [int(s) for s in res]
+        
+        if len(res) == 3:
+            self.time_traffic_d = res[0]
+            self.time_traffic_h = res[1]
+            self.time_traffic_m = res[2]
+
+        elif len(res) == 2 and 'day' in self.time_traffic and 'hour' in self.time_traffic:
+            self.time_traffic_d = res[0]
+            self.time_traffic_h = res[1]
+            self.time_traffic_m = 0
+        elif len(res) == 2 and 'day' in self.time_traffic and 'minute' in self.time_traffic:
+            self.time_traffic_d = res[0]
+            self.time_traffic_h = 0
+            self.time_traffic_m = [1]
+        elif len(res) == 2 and 'hour' in self.time_traffic and 'minute' in self.time_traffic:
+            self.time_traffic_d = 0
+            self.time_traffic_h = res[0]
+            self.time_traffic_m = res[1]
+        elif len(res) == 1 and 'minute' in self.time_traffic:
+            self.time_traffic_d = 0
+            self.time_traffic_h = 0
+            self.time_traffic_m = res[0]
+        elif len(res) == 1 and 'hour' in self.time_traffic:
+            self.time_traffic_d = 0
+            self.time_traffic_h = res[0]
+            self.time_traffic_m = 0
+        elif len(res) == 1 and 'day' in self.time_traffic:
+            self.time_traffic_d = res[0]
+            self.time_traffic_h = 0
+            self.time_traffic_m = 0
+
+
+
+        # self.time_traffic_m = float(self.time_traffic[self.time_traffic.find('s ')+2:self.time_traffic.find('s ')+4])
         self.distance = int(self.d1['text'][:self.d1['text'].find(' ')].replace(',', ''))
         # point along the path heuristic
         ratio = len(self.gps) / int(self.d1['text'][:self.d1['text'].find(' ')].replace(',', ''))
@@ -89,7 +126,7 @@ class RouteInfo():
     
     def get_live_route_weather(self):
 
-        step_count = int(float(len(self.gps))/(self.time_traffic_h))
+        step_count = int(float(len(self.gps))/((self.time_traffic_h)+self.time_traffic_d*24))
     
         path_weather = []
 
