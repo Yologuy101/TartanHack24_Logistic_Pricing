@@ -35,6 +35,8 @@ class Button:
             return False
         mouseX_in_bounds = self.centerX - self.width/2 <= mouseX <= self.centerX + self.width/2
         mouseY_in_bounds = self.centerY - self.height/2 <= mouseY <= self.centerY + self.height/2
+        if mouseX_in_bounds and mouseY_in_bounds:
+            self.color = 'lightBlue'
         return mouseX_in_bounds and mouseY_in_bounds
 
 class Text_box:
@@ -81,9 +83,11 @@ class Text_box:
             drawLabel(self.response, self.centerX - self.width/2, self.centerY - self.height / 5, 
                       size = 20, bold = True, fill = 'gray', font = "montserrat", align = 'left-top')
             
-            #cursor marker
-            if self.pressed and self.response == '':
-                drawLabel("|", self.centerX - self.width/2, self.centerY, size=20, fill='gray', bold=True, font="montserrat")
+            if self.pressed:
+                base_offset = 2  # Adjust this to move the initial cursor position to the right
+                char_width = 10.1  # Increase this value to better match the average character width of your font
+                cursorX = self.centerX - self.width / 2 + base_offset + len(self.response) * char_width
+                drawLine(cursorX, self.centerY - 10, cursorX, self.centerY + 10, fill='black', lineWidth=2)
 
     def in_box(self, mouseX, mouseY):
         if self.centerX is None or self.centerY is None:
@@ -113,18 +117,28 @@ class Output_box:
 
     def draw(self):
         if self.centerX is not None and self.centerY is not None:
-            #outside
+
+            output_box_left_circle_centerX = self.centerX - self.width/2
+            output_box_left_circle_radius = self.height/2
+
+            output_box_right_circle_centerX = self.centerX + self.width/2
+            output_box_right_circle_radius = self.height/2
+
             drawRect(self.centerX, self.centerY, self.width, self.height, fill='gray', align='center')
-            drawCircle(self.centerX - self.width/2, self.centerY, self.height/2, fill='gray')
-            drawCircle(self.centerX + self.width/2, self.centerY, self.height/2, fill='gray')
+            drawCircle(output_box_left_circle_centerX, self.centerY, output_box_left_circle_radius, fill='gray')
+            drawCircle(output_box_right_circle_centerX, self.centerY, output_box_right_circle_radius, fill='gray')
 
             #title label
             centerY_scalar = 1.1
-            drawLabel(self.title, self.centerX - self.width/2, self.centerY - self.height * centerY_scalar, 
+            output_titles_centerX = self.centerX - self.width/2
+            output_titles_centerY = self.centerY - self.height * centerY_scalar
+            drawLabel(self.title, output_titles_centerX, output_titles_centerY, 
                       size = 16, bold = True, font = "montserrat", align = 'left-top')
             
             #value label
-            drawLabel(self.value, self.centerX - self.width/2, self.centerY - self.height / 5, 
+            output_values_centerX = self.centerX - self.width/2
+            output_values_centerY = self.centerY - self.height / 5
+            drawLabel(self.value, output_values_centerX, output_values_centerY, 
                       size = 20, bold = True, fill = 'white', font = "montserrat", align = 'left-top')
             
 
@@ -132,6 +146,13 @@ class Output_box:
 def pressing_events(mouseX, mouseY):
     if app.submit_button.in_button(mouseX, mouseY): 
         app.submitted = True
+        app.from_location_pressed = False
+        app.to_location_pressed = False
+        app.cargo_weight_pressed = False
+        app.cargo_volume_pressed = False
+        app.cargo_value_pressed = False
+        app.deliver_by_date_pressed = False
+        app.deliver_by_time_pressed = False
     elif app.from_location_text_box.in_box(mouseX, mouseY):
         app.from_location_pressed = True
         app.to_location_pressed = False
@@ -251,7 +272,7 @@ def key_events(key):
         elif key == 'enter':
             app.deliver_by_date_pressed = False
         else:
-            app.deliver_by_date_response = app.deliver_by_date_response[:-1]
+            app.deliver_by_date_response += key
     if app.deliver_by_time_pressed:
         if key == 'space':
             app.deliver_by_time_response += ' '
@@ -260,7 +281,7 @@ def key_events(key):
         elif key == 'enter':
             app.deliver_by_time_pressed = False
         else:
-            app.deliver_by_time_response = app.deliver_by_time_response[:-1]
+            app.deliver_by_time_response += key
 
 def openImage(fileName):
     return Image.open(os.path.join(pathlib.Path(__file__).parent, fileName))

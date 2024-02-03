@@ -1,5 +1,6 @@
 from cmu_graphics import *
-from graphics_utils import Button, Text_box, Output_box
+from cmu_graphics import CMUImage
+from graphics_utils import Button, Text_box, Output_box, openImage
 
 def load_graphics():
   #submit button
@@ -81,7 +82,7 @@ def load_graphics():
   deliver_by_date_text_box_height = app.height * 0.1
   app.deliver_by_date_text_box = Text_box(deliver_by_date_text_box_centerX_scalar, deliver_by_date_text_box_centerY_scalar,
                                         deliver_by_date_text_box_width, deliver_by_date_text_box_height, 
-                                        "Deliver by date", app.deliver_by_date_response, app.deliver_by_date_pressed)
+                                        "Deliver by date (mm/dd/yyyy)", app.deliver_by_date_response, app.deliver_by_date_pressed)
   
   #deliver by time text box
   app.deliver_by_time_pressed = False
@@ -92,7 +93,7 @@ def load_graphics():
   deliver_by_time_text_box_height = app.height * 0.1
   app.deliver_by_time_text_box = Text_box(deliver_by_time_text_box_centerX_scalar, deliver_by_time_text_box_centerY_scalar,
                                         deliver_by_time_text_box_width, deliver_by_time_text_box_height, 
-                                        "Deliver by time", app.deliver_by_time_response, app.deliver_by_time_pressed)
+                                        "Deliver by time (24hr)", app.deliver_by_time_response, app.deliver_by_time_pressed)
   
 
   #output boxes
@@ -128,15 +129,15 @@ def load_graphics():
                                                   optimal_leave_time_width, optimal_leave_time_height,
                                                   "Optimal Leave Time", app.optimal_leave_time_value)
   
-  #GPS route data
-  app.gps_route_data_value = 'test'
-  gps_route_data_centerX_scalar = 0.8
-  gps_route_data_centerY_scalar = 0.45
-  gps_route_data_width = app.width * 0.5
-  gps_route_data_height = app.height * 0.1
-  app.gps_route_data_output_box = Output_box(gps_route_data_centerX_scalar, gps_route_data_centerY_scalar,
-                                                  gps_route_data_width, gps_route_data_height,
-                                                  "GPS Route Data (points per mile)", app.gps_route_data_value)
+  #data points
+  app.data_points_value = 'test'
+  data_points_centerX_scalar = 0.8
+  data_points_centerY_scalar = 0.45
+  data_points_width = app.width * 0.5
+  data_points_height = app.height * 0.1
+  app.data_points_output_box = Output_box(data_points_centerX_scalar, data_points_centerY_scalar,
+                                                  data_points_width, data_points_height,
+                                                  "Data Points Considered", app.data_points_value)
   
   #Predicted weather
   app.predicted_weather_value = 'test'
@@ -267,9 +268,9 @@ def output_draw():
   app.optimal_leave_time_output_box.update_position(app.width, app.height, app.optimal_leave_time_value)
   app.optimal_leave_time_output_box.draw()
 
-  #GPS route data
-  app.gps_route_data_output_box.update_position(app.width, app.height, app.gps_route_data_value)
-  app.gps_route_data_output_box.draw()
+  #Data points
+  app.data_points_output_box.update_position(app.width, app.height, app.data_points_value)
+  app.data_points_output_box.draw()
 
   #predicted weather
   app.predicted_weather_output_box.update_position(app.width, app.height, app.predicted_weather_value)
@@ -287,4 +288,35 @@ def output_draw():
   app.recommended_pricing_output_box.update_position(app.width, app.height, app.recommended_pricing_value)
   app.recommended_pricing_output_box.draw()
 
+def title_draw():
+  #main title
+  drawLabel('PLS Logistics Services Contract Risk Assessment & Pricing Model', app.width*0.5, app.height*0.1, 
+            fill = 'white', bold = True, font = 'montserrat', size = 30)
+  
+  #main title image scalars
+  title_image_centerX_scalar = 0.1
+  title_image_centerY_scalar = 0.1
+  image_x_reduction_scalar = .08
+  image_y_reduction_scalar = .08
+  
+  #main title image vars
+  title_image_centerX = app.width * title_image_centerX_scalar
+  title_image_centerY = app.height * title_image_centerY_scalar
+  title_image_width = app.width * image_x_reduction_scalar
+  title_image_height = app.height * image_y_reduction_scalar
+  
+  #main title image
+  title_image = CMUImage(openImage("pls_logo.png"))
+  drawImage(title_image, title_image_centerX, title_image_centerY, width = title_image_width,
+            height = title_image_height,align="center")
 
+def output_title_draw():
+  #model output title scalars
+  output_title_centerX_scalar = 0.7
+  output_title_centerY_scalar = 0.2
+
+  #model output title vars
+  output_title_centerX = app.width * output_title_centerX_scalar
+  output_title_centerY = app.height * output_title_centerY_scalar
+  #model output title
+  drawLabel("Model Output", output_title_centerX, output_title_centerY, fill='gray', bold = True, font = 'montserrat', size = 35)
